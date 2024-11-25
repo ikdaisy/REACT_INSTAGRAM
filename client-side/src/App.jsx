@@ -24,7 +24,7 @@ function App() {
       {user&&<Nav user={user} setUser={setUser} />}
       <Routes>
         <Route path='/' element={<Home setUser={setUser} />}/>
-        <Route path='/profile' Component={Profile}/>
+        <Route path='/profile' element={<Profile setUser={setUser}/>}/>
         <Route path='/editprofile' Component={EditProfile}/>
 
 
