@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const Home = ({setUser,setProfile}) => {
   const navigate=useNavigate()
   const token = localStorage.getItem("Token")
-  console.log(token);
+  // console.log(token);
 
   useEffect(()=>{getUser()},[])
   
@@ -13,13 +13,13 @@ const Home = ({setUser,setProfile}) => {
    if(token){
     try {
       const res= await axios.get("http://localhost:3000/api/getuser",{headers:{"Authorization":`Bearer ${token}`}})
-      console.log(res);
+      // console.log(res);
       if(res.status==200){
         setUser(res.data.username)
-        // if(res.data.profile){
-        //   setProfile(res.data.profile.profile)
+        if(res.data.profile){
+          setProfile(res.data.profile.profile)
           
-        // }
+        }
       }
       else if(res.status==403){
         console.log("unauth");

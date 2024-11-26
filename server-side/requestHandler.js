@@ -1,5 +1,7 @@
 import userSchema from './models/user.model.js'
 import profileSchema from './models/userData.model.js'
+import postSchema from './models/post.model.js'
+
 
 import bcrypt from 'bcrypt'
 import pkg from "jsonwebtoken";
@@ -80,6 +82,7 @@ export async function checkEmail(req,res) {
         subject: "EMAIL VERIFICATION", // Subject line
         text: "PLEASE VERIFY", // plain text body
         html: `<!DOCTYPE html>
+        
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -147,7 +150,7 @@ export async function getUser(req,res) {
      // console.log(_id);
      const user = await userSchema.findOne({_id})
     //  console.log(user.username);
-     const profile=await profileSchema.findOne({userID:_id},{_id:0,profile:1})
+     const profile=await profileSchema.findOne({userID:_id})
     //  console.log(profile);
      res.status(200).send({username:user.username,profile});
    } catch (error) {
@@ -161,10 +164,8 @@ export async function getUserData(req,res) {
     // console.log(req.user.userId);
     const _id=req.user.userId
     const profileData= await profileSchema.findOne({userID:_id})
-    const userData=await userSchema.findOne({_id:_id},{username:1,email:1})
-    // console.log(userData);
-    // console.log(profileData);
-    
+    const userData=await userSchema.findOne({_id:_id},{username:1,email:1})                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+
     res.status(200).send({profileData,userData:userData})
    } catch (error) {
     res.status(404).send(error)
@@ -172,19 +173,10 @@ export async function getUserData(req,res) {
     
 }
 
-// export async function addUserData(req,res) {
-//    const {...data}=req.body
-//    await profileSchema.create({...data}).then(()=>{
-//         res.status(201).send({msg:"Successfully added"})
 
-//   }).catch((error)=>{
-//     res.status(404).send({msg:error})
-
-//   }) 
-// }
 
 export async function editUserData(req,res) {
-    const {username,email,gender,bio,phone}=req.body
+    const {username,email,gender,bio,phone,profile}=req.body
     // console.log(req.user.userId);
     const _id =req.user.userId
     console.log(_id);
@@ -193,8 +185,8 @@ export async function editUserData(req,res) {
     console.log(user);
     if(user){
         await userSchema.updateOne({_id},{$set:{username,email}}).then(async()=>{
-            await profileSchema.updateOne({userID:_id},{$set:{gender,phone,bio}}).then(()=>{
-               return res.status(200).send({msg:"Updated Successfully!!"})
+            await profileSchema.updateOne({userID:_id},{$set:{gender,phone,bio,profile}}).then(()=>{
+               return res.status(201).send({msg:"Updated Successfully!!"})
             }).catch((error)=>{
                return res.status(404).send({msg:error})
             })
@@ -206,7 +198,7 @@ export async function editUserData(req,res) {
     }
    else{
     await userSchema.updateOne({_id},{$set:{username,email}})
-    await profileSchema.create({gender,phone,bio,userID:_id}).then(()=>{
+    await profileSchema.create({gender,phone,profile,bio,userID:_id}).then(()=>{
         res.status(201).send({msg:"Created Successfully!!"})
     }).catch((error)=>{
         res.status(404).send({msg:error})
@@ -220,19 +212,43 @@ export async function deleteData(req,res) {
     try {
         const {_id}=req.params;
         // console.log(_id);
-        await profileSchema.delete(_id).then(()=>{
-            res.status(200).send({msg:"Deleted successfully"})
+        await userSchema.deleteOne({_id}).then(async()=>{
+            await profileSchema.deleteOne({userID:_id}).then(()=>{
+                res.status(200).send({msg:"Deleted successfully"})
+            }).catch((error)=>{
+                res.status(404).send({msg:error})
+            })
         }).catch((error)=>{
         res.status(404).send({msg:error})
         })
 
     } catch (error) {
-        res.status(404).send({msg:error})
-
-        
+        res.status(404).send({msg:error})  
     }
  }
 
+ // add post 
+ export async function addPost(req,res) {
+    const {description,postedTime,postedDate,images}=req.body
+    const _id=req.user.userId
+    await postSchema.create({description,postedTime,postedDate,images,userID:_id}).then(()=>{
+        res.status(201).send({msg:"Created Successfully!!"})
+    }).catch((error)=>{
+        res.status(404).send({msg:error})
+    })
+ }
+
+
+ // get post 
+ export async function getPost(req,res) {
+    try {
+        const _id=req.user.userId
+        const post = await postSchema.find({userID:_id})
+        return res.status(200).send(post)
+    } catch (error){
+        res.status(404).send({msg:error})
+    }
+ }
  
 
 

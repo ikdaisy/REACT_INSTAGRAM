@@ -4,7 +4,7 @@ import './Nav.css'
 import user_icon from './person.png'
 
 
-const Nav = ({user,setUser}) => {
+const Nav = ({user,setUser,profile}) => {
 const navigate=useNavigate()
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 
@@ -19,7 +19,7 @@ const navigate=useNavigate()
     <div className="user-info">
     <h1>{user}</h1>
    <div className="image">
-      <img className='profile' src={user_icon} alt="" onClick={toggleDropdown} />
+      <img className='profile' src={profile?profile:user_icon} alt="" onClick={toggleDropdown} />
       <div className="profile-dropdown">   
             {isDropdownOpen && (
               <ul className="dropdown-menu">

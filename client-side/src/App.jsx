@@ -8,33 +8,35 @@ import SignUp from './components/SignUp/SignUp'
 import Email from './components/Email/Email'
 import Profile from './components/Profile/Profile'
 import EditProfile from './components/EditProfile/EditProfile'
-
+import AddPost from './components/AddPost/AddPost'
+import DisplayPost from './components/DisplayPost/DisplayPost'
 
 
 function App() {
   const [user,setUser]=useState("")
-  // const [profile,setProfile]=useState("")
+  const [profile,setProfile]=useState("")
 
 
-  console.log(`app ${user}`);
+  // console.log(profile);
   
   return (
-    <>
+    
     <BrowserRouter>
-      {user&&<Nav user={user} setUser={setUser} />}
+      {user && <Nav user={user} setUser={setUser} profile={profile} />}
       <Routes>
-        <Route path='/' element={<Home setUser={setUser} />}/>
-        <Route path='/profile' element={<Profile setUser={setUser}/>}/>
+        <Route path='/' element={<Home setUser={setUser} setProfile={setProfile} />}/>
+        <Route path='/profile' element={<Profile setUser={setUser} profile={profile} setProfile={setProfile}/>}/>
         <Route path='/editprofile' Component={EditProfile}/>
-
-
+        
+        <Route path='/addpost' element={<AddPost/>}/>
+        <Route path='/displaypost' Component={DisplayPost}/>
         <Route path='/signin' Component={SignIn}/>
         <Route path='/email' Component={Email}/>
         <Route path='/signup' Component={SignUp}/>
       </Routes>
 
       </BrowserRouter>
-    </>
+    
   )
 }
 

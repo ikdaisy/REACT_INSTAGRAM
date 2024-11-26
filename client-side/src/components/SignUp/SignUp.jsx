@@ -61,7 +61,7 @@ const SignUp = () => {
         </div>
         <div className="input">
           <img src={password_icon} alt="" />
-          <input type="cpassword" id='cpassword' name='cpassword' placeholder=' Confirm password' onChange={handleChange} value={user.cpassword}  />
+          <input type="password" id='cpassword' name='cpassword' placeholder=' Confirm password' onChange={handleChange} value={user.cpassword}  />
         </div>
        
 
