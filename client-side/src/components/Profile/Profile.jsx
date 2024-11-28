@@ -22,9 +22,13 @@ const Profile = ({setUser,profile,setProfile}) => {
 
     const fetchUserData=async()=>{
         const res = await axios.get("http://localhost:3000/api/getuserdata",{headers:{"Authorization":`Bearer ${token}`}})
-        // console.log(res);
+        console.log(res);
         
         if(res.status==200){
+            setUser(res.data.userData.username)
+        if(res.data.profile){
+          setProfile(res.data.profileData.profile)
+        }
             setUserData(res.data.userData)
             res.data.profileData?setProfileData(res.data.profileData):setProfileData({})
             res.data.profileData?setProBool(true):setProfileData(false)
@@ -34,7 +38,7 @@ const Profile = ({setUser,profile,setProfile}) => {
     }
 
     const getPosts=async()=>{
-        const res=await axios.get("http://localhost:3000/api/getpost",{headers:{"Authorization":`Bearer ${token}`}})
+        const res=await axios.get("http://localhost:3000/api/getuserposts",{headers:{"Authorization":`Bearer ${token}`}})
         console.log(res);
         setPost(res.data);
       }
@@ -106,13 +110,14 @@ const Profile = ({setUser,profile,setProfile}) => {
 
         </div>
         <div className="right" id="right">
+        <Link to={'/addpost'}> <button className='addbtn'>+</button></Link>
             
         <div className="men-cards" id="products">
-       <Link to={'/addpost'}> <button className='addbtn'>+</button></Link>
+      
                 
                 {posts.map((post)=>
                 <Link to={`/displaypost/${post._id}`}><div className="men-card">
-                <div className="images">
+                <div className="postimages">
                   <img src={post.images[0]} alt=""/>
                 </div>
                 </div></Link>)}

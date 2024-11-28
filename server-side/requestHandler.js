@@ -239,8 +239,8 @@ export async function deleteData(req,res) {
  }
 
 
- // get post 
- export async function getPost(req,res) {
+ // get all user posts
+ export async function getUserPosts(req,res) {
     try {
         const _id=req.user.userId
         const post = await postSchema.find({userID:_id})
@@ -249,6 +249,33 @@ export async function deleteData(req,res) {
         res.status(404).send({msg:error})
     }
  }
+
+ export async function getPostDetails(req,res) {
+    try {
+        const {id}=req.params
+        // console.log(id);
+        
+        const post = await postSchema.findOne({_id:id})
+        // console.log(post);
+        return res.status(200).send(post)
+    } catch (error){
+        res.status(404).send({msg:error})
+    }
+ }
+
+ // get all  posts
+ export async function getAllPosts(req,res) {
+    try {
+       
+        const post = await postSchema.find()
+        console.log(post);
+        
+        return res.status(200).send(post)
+    } catch (error){
+        res.status(404).send({msg:error})
+    }
+ }
+
  
 
 

@@ -5,7 +5,7 @@ import {useNavigate} from 'react-router-dom'
 import './EditProfile.css'
 
 
-const EditProfile = () => {
+const EditProfile = ({setProfile,setUser}) => {
   const navigate=useNavigate()
   const token = localStorage.getItem("Token")
   const [updateData,setUpdateData]=useState({})
@@ -31,9 +31,12 @@ const EditProfile = () => {
 
   const fetchUserData=async()=>{
       const res = await axios.get("http://localhost:3000/api/getuserdata",{headers:{"Authorization":`Bearer ${token}`}})
-      // console.log(res);
+      console.log(res);
       if(res.status==200){
+        setUser(res.data.userData.username)
+      
          if(res.data.profileData){
+          setProfile(res.data.profileData.profile)
           const data= {profile:res.data.profile,username:res.data.userData.username,email:res.data.userData.email,bio:res.data.profileData.bio,phone:res.data.profileData.phone,gender:res.data.profileData.gender}
           setUpdateData(data)
           // console.log(updateData);

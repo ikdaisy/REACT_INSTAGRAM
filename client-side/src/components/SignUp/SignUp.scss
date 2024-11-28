@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Funnel+Display:wght@300..800&family=Parkinsans:wght@300..800&family=Potta+One&display=swap');
+
+
 .container{
     display: flex;
     flex-direction: column;
@@ -8,6 +11,7 @@
     width: 400px;
     height: 70vh;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    font-family: "Parkinsans", sans-serif;
 
 
     // padding-bottom: 30px;
@@ -31,6 +35,8 @@
     color:#3c009d ;
     font-size: 28px;
     font-weight: 700;
+    font-family: "Parkinsans", sans-serif;
+
 }
 
 .underline{
@@ -98,6 +104,7 @@
     font-weight: 700;
     text-decoration: underline  #3c009d;
     cursor: pointer;
+    
 
 }
     

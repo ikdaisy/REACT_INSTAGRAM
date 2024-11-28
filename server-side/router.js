@@ -10,10 +10,10 @@ router.route('/getuserdata').get(Auth,rh.getUserData)
 router.route('/edituserdata').post(Auth,rh.editUserData)
 router.route('/deleteuser/:_id').delete(rh.deleteData)
 
-router.route('/addpost').post(Auth,rh.addPost)
-router.route('/getpost').get(Auth,rh.getPost)
-
-
+router.route('/addpost').post(Auth,rh.addPost) 
+router.route('/getuserposts').get(Auth,rh.getUserPosts)
+router.route('/getpostdetails/:id').get(rh.getPostDetails)
+router.route('/getallposts').get(rh.getAllPosts)
 
 router.route('/signup').post(rh.signUp)
 router.route("/signin").post(rh.signIn)

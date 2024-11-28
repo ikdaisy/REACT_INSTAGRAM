@@ -26,10 +26,10 @@ function App() {
       <Routes>
         <Route path='/' element={<Home setUser={setUser} setProfile={setProfile} />}/>
         <Route path='/profile' element={<Profile setUser={setUser} profile={profile} setProfile={setProfile}/>}/>
-        <Route path='/editprofile' Component={EditProfile}/>
+        <Route path='/editprofile' element={<EditProfile setUser={setUser} setProfile={setProfile}/>}/>
         
         <Route path='/addpost' element={<AddPost/>}/>
-        <Route path='/displaypost' Component={DisplayPost}/>
+        <Route path='/displaypost/:id' Component={DisplayPost}/>
         <Route path='/signin' Component={SignIn}/>
         <Route path='/email' Component={Email}/>
         <Route path='/signup' Component={SignUp}/>

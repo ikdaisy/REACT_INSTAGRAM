@@ -1,8 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Funnel+Display:wght@300..800&family=Parkinsans:wght@300..800&family=Potta+One&display=swap');
 
 // Main container style
 .Post {
     // max-width: 400px;
     width: 400px;
+    font-family: "Parkinsans", sans-serif;
+
     position: absolute;
     left: 50%;
     top: 50%;
@@ -11,10 +14,12 @@
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    font-family: 'Arial', sans-serif;
+    
 
     h2 {
     color:#3c009d;
+    font-family: "Parkinsans", sans-serif;
+
 
       text-align: center;
       font-size: 24px;

@@ -12,7 +12,7 @@
 
 .left{
     width: 35%;
-    height: 91vh;
+    height: 100vh;
     /* background-color: blue; */
     line-height: 5vh;
     font-family: Arial, Helvetica, sans-serif;
@@ -56,14 +56,16 @@
 }
 
 .right{
-    display: flex;
-    flex-wrap: wrap;
+    /* display: flex; */
+    /* flex-wrap: wrap; */
     /* background-color: black; */
-    /* width: 65%; */
+    width: 65%;
     height: 80vh;
 }
  /* card design */
 .men-cards{
+  display: flex;
+  flex-wrap: wrap;
    
     margin-top: 20px;
     margin-left: 50px;
@@ -77,15 +79,16 @@
   .men-card{
     box-shadow: rgba(66, 65, 65, 0.35) 0px 5px 15px;
     padding: 20px 20px;
-    width: 200px;
-    height: 200px;
+    width: 250px;
+    height: 220px;
     transition: all 0.3s ease-in-out;
     position: relative;
   }
 
-  .images img{
-    width:12em ;
-    height: 12em;
+  .postimages img{
+    width:15em ;
+    height: 10em;
+    padding-right: 30px;
     object-fit: cover;
     background-size: cover;
     
@@ -101,7 +104,7 @@
     padding: 0px 10px;
     margin-right: 20px;
     border-radius: 10%;
-    margin-bottom: 20px;
+    margin: 20px;
     font-weight: 600;
     cursor: pointer;
 
