@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React, { useEffect,useState } from 'react'
 import './Home.scss'
-import img from './enhypen.jpg'
 import heart from './heart.png'
 import chat from './chat-bubble.png'
 import send from './send.png'
@@ -15,8 +14,6 @@ const Home = ({setUser,setProfile}) => {
   const token = localStorage.getItem("Token")
   const [posts,setPost]=useState([])
   const [images,setImages]=useState([])
-  
-  // console.log(token);
 useEffect(()=>{
 getUser()
 },[])

@@ -9,7 +9,7 @@ const SignUp = () => {
   const navigate=useNavigate()
   const email=localStorage.getItem('email');
   // console.log(email);
-  
+ 
     const [user,setUser]=useState({
       email:email,
       username:"",
@@ -18,8 +18,8 @@ const SignUp = () => {
     })
 
     const handleChange=(e)=>{
-      // console.log(e.target.value);
       setUser((pre)=>({...pre,[e.target.name]:e.target.value}))
+      
     }
 
     const handleSubmit=async(e)=>{

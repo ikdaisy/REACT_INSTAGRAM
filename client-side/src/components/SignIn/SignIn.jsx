@@ -26,16 +26,20 @@ const SignIn = () => {
 
   const handleSubmit=async(e)=>{
     e.preventDefault()
+   try {
     const res = await axios.post("http://localhost:3000/api/signin",loginData);
-    console.log(res);
+    
+    // console.log(res);
     if(res.status==200){
       localStorage.setItem("Token",res.data.token)
       alert(res.data.msg)
       navigate('/')
     }
-    else{
-      alert(res.data.msg)
-    }
+   
+   } catch (error) {
+    console.log(error.response.data.msg);
+    
+   }
 
   
   }

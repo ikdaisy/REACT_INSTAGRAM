@@ -70,11 +70,6 @@ export async function signIn(req,res){
 export async function checkEmail(req,res) {
    try {
     const {email}=req.body
-    // const userEmail = await userSchema.findOne({email})
-    // if(userEmail)
-    //    {
-    //     res.status(400).send({msg:"Email already exists"})
-    //    }
 
     const info = await transporter.sendMail({
         from: 'safakallianthodi6@gmail.com', // sender address
@@ -179,7 +174,7 @@ export async function editUserData(req,res) {
     const {username,email,gender,bio,phone,profile}=req.body
     // console.log(req.user.userId);
     const _id =req.user.userId
-    console.log(_id);
+    // console.log(_id);
     
     const user = await profileSchema.findOne({userID:_id})
     console.log(user);
@@ -268,7 +263,7 @@ export async function deleteData(req,res) {
     try {
        
         const post = await postSchema.find()
-        console.log(post);
+        // console.log(post);
         
         return res.status(200).send(post)
     } catch (error){
